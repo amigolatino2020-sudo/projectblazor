@@ -1,0 +1,59 @@
+
+---
+
+## Activity 3: Comprehensive Blazor Project with Copilot
+
+**File: `CopilotPrompts/Activity3_Comprehensive.md`**
+
+```markdown
+# Activity 3: Comprehensive Blazor Project Development
+
+## Full Application Features
+
+This task management application includes:
+
+1. **CRUD Operations** - Create, Read, Update, Delete tasks
+2. **Task Filtering** - Filter by status, priority, due date
+3. **Search Functionality** - Search tasks by title/description
+4. **Sorting** - Sort by any column
+5. **Statistics Dashboard** - Task completion statistics
+
+## Copilot Prompts Used Throughout Development
+
+### Prompt for Statistics Component
+"Create a Statistics.razor component that displays: total tasks, completed tasks, pending tasks, and average priority. Use Bootstrap cards for styling."
+
+### Prompt for Search Feature
+"Add a search box to Tasks.razor that filters tasks by Title and Description in real-time. Use debouncing to prevent excessive filtering."
+
+### Prompt for Local Storage
+"How do I persist tasks to browser local storage in Blazor so data survives page refresh?"
+
+## Additional Features Implemented with Copilot
+
+### Task Filter Component
+```csharp
+// Copilot generated filter component
+<select @bind="selectedFilter" @onchange="ApplyFilter">
+    <option value="all">All Tasks</option>
+    <option value="completed">Completed</option>
+    <option value="pending">Pending</option>
+    <option value="overdue">Overdue</option>
+</select>
+
+@code {
+    private string selectedFilter = "all";
+    
+    private async Task ApplyFilter()
+    {
+        var allTasks = await TaskService.GetAllTasksAsync();
+        tasks = selectedFilter switch
+        {
+            "completed" => allTasks.Where(t => t.IsComplete).ToList(),
+            "pending" => allTasks.Where(t => !t.IsComplete).ToList(),
+            "overdue" => allTasks.Where(t => !t.IsComplete && t.DueDate < DateTime.Now).ToList(),
+            _ => allTasks
+        };
+        StateHasChanged();
+    }
+}

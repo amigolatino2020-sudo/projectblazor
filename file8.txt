@@ -1,0 +1,32 @@
+
+---
+
+## GitHub Repository Setup
+
+### Create the Repository
+
+1. Go to **GitHub.com** and sign in
+2. Click the **+** icon in top-right corner → **New repository**
+3. Name: `Blazor-Copilot-TaskManager`
+4. Description: "Complete Blazor project demonstrating Microsoft Copilot usage for code generation, debugging, and optimization"
+5. Set to **Public**
+6. Click **Create repository**
+
+### Upload Files
+
+After creating the repository, upload all the files above using one of these methods:
+
+**Option A: GitHub Web Interface**
+- Click "uploading an existing file" link
+- Drag and drop all files/folders
+- Write commit message: "Initial commit - Complete Blazor Copilot project"
+- Click "Commit changes"
+
+**Option B: Git Commands (if Git installed)**
+```bash
+git clone https://github.com/YOUR_USERNAME/Blazor-Copilot-TaskManager.git
+cd Blazor-Copilot-TaskManager
+# Copy all project files here
+git add .
+git commit -m "Initial commit - Complete Blazor project for Copilot assignments"
+git push origin main
